@@ -53,15 +53,19 @@ def edit_expense(title):
     print('b for amount')
     print('c for tags')
     command_input = input('Enter you choice:')
+    new_title = new_amount = new_tags = None
     if command_input == 'a':
-        new_title = input('Enter new title: ')
-        to_edit[0] = new_title
+        while not isinstance(new_title, str):
+            new_title = input('Enter new title: ')
+            to_edit[0] = new_title
     elif command_input == 'b':
-        new_amount = input('Enter new amount: ')
-        to_edit[1] = new_amount
+        while not isinstance(new_amount, float):
+            new_amount = input('Enter new amount: ')
+            to_edit[1] = new_amount
     else:
-        new_tags = input('Enter new tags seperated by commas').split()
-        to_edit[3] = new_tags
+        while not isinstance(new_tags, str):
+            new_tags = input('Enter new tags seperated by commas').split()
+            to_edit[3] = new_tags
 
     with open('expense.txt', 'a') as expense_file:
         expense_file.write(','.join(to_edit) + '\n')
